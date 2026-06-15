@@ -2,13 +2,12 @@
 
 ## Overview
 
-A web application that analyzes customer feedback using Azure AI Language.
+A web application that analyzes customers feedback using Azure AI Language.
 
 ## Features
 
 - Submit customer comments
 - Sentiment analysis
-- Key phrase extraction
 - Dashboard analytics
 
 ## Azure Access
@@ -30,6 +29,9 @@ Team members must sign in using their school Microsoft accounts.
 ## Team Roles
 
 Diego - Frontend
+
 Anshpreet - Cloud Development
+
 Aryan - AI Integration
+
 Zaara - Data Storage and Docs
