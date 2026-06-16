@@ -18,8 +18,7 @@ Built as part of the INTP302 Emerging Trends in Software Development midterm pro
 
 ## Live App
 
-> Link will be added once deployed by Ansh
-
+https://feedback-dashboard-bta2cfarb6bvhjf7.canadacentral-01.azurewebsites.net/
 ---
 
 ## Features
