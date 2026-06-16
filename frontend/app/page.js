@@ -25,20 +25,32 @@ export default function Home() {
     });
 
     const data = await response.json();
+
     if (data.success) {
       setResult(data.result);
+
+      await fetch("/api/save-feedback", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          text: feedback,
+          sentiment: data.result.sentiment,
+          confidence: data.result.confidence,
+          keyPhrases: data.result.keyPhrases,
+        }),
+      });
     } else {
       alert("Something went wrong. Please try again.");
     }
-    setLoading(false);
-  }
+
+    setLoading(false); // ← this was missing
+  } // ← handleSubmit ends here
 
   const config = result ? sentimentConfig[result.sentiment] : null;
 
   return (
     <main className="min-h-screen bg-black text-white flex flex-col items-center justify-center px-4">
 
-      {/* Heading */}
       <div className="text-center mb-12">
         <h1 className="text-5xl font-semibold tracking-tight mb-3">
           Feedback Analyzer
@@ -48,10 +60,8 @@ export default function Home() {
         </p>
       </div>
 
-      {/* Card */}
       <div className="w-full max-w-xl bg-white/5 border border-white/10 rounded-3xl p-8 backdrop-blur-sm">
 
-        {/* Textarea */}
         <label className="block text-sm text-gray-400 mb-2 ml-1">
           Your feedback
         </label>
@@ -62,7 +72,6 @@ export default function Home() {
           onChange={(e) => setFeedback(e.target.value)}
         />
 
-        {/* Button */}
         <button
           onClick={handleSubmit}
           disabled={loading || !feedback.trim()}
@@ -71,7 +80,6 @@ export default function Home() {
           {loading ? "Analyzing..." : "Analyze Sentiment"}
         </button>
 
-        {/* Result */}
         {result && config && (
           <div className={`mt-6 border rounded-2xl p-5 ${config.bg}`}>
             <div className="flex items-center justify-between mb-3">
@@ -88,7 +96,6 @@ export default function Home() {
               </span>
             </div>
 
-            {/* Confidence Bar */}
             <div className="w-full bg-white/10 rounded-full h-1.5 mb-4">
               <div
                 className={`h-1.5 rounded-full ${config.color.replace("text", "bg")}`}
